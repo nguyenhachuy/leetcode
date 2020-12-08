@@ -7,7 +7,6 @@ https://www.geeksforgeeks.org/binary-indexed-tree-or-fenwick-tree-2/
 """
 
 class BITree:
-  class BITNode:
   def __init__(self, arr):
     self.tree = [0] * (len(arr) + 1)
     self.arr = arr
