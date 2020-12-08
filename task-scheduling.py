@@ -48,4 +48,6 @@ Time complexity: O(tasks*n)
 When there are more tasks than worker, there will be tasks idling. 3*3=9/3 = 3, +1 for initial scheduling
 O(tasks*n/workers + 1)
 Worst case: O(tasks*n + 1)
+
+How to account for idle time? Then I have to figure out
 """
