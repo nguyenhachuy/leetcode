@@ -1,11 +1,11 @@
 """
 https://www.youtube.com/watch?v=RYaakWv5m6o
-Key observation: maintaining a discovery and lowest mapping, we discover a cycle if we see a node with lower discovery. 
-The lowest/earliest node discoverable will propagate throughout the entire cycle 
+Key observation: maintaining a discovery and lowest mapping, we discover a cycle if we see a node with lower discovery.
+The lowest/earliest node discoverable will propagate throughout the entire cycle
 We can also do subtraction to find "gap"
 
 discovery + lowest + graph -> O(V+E) space
-each node is visited once, and each edge is visited once -> O(V+E) 
+each node is visited once, and each edge is visited once -> O(V+E)
 """
 from collections import defaultdict
 
@@ -47,7 +47,7 @@ class Solutions:
 
 
 """
-discovery {0:0, 1:1, 2:2, 3:3} 
+discovery {0:0, 1:1, 2:2, 3:3}
 lowest {0:0, 1:0, 2:0, 3:0}
 graph {0: [1,2], 1: [0,2,3], 2: [1,0], 3: [1]}
 counter 0
@@ -60,7 +60,7 @@ result []
 
     2
     result []
-    
+
     3
     result []
 
