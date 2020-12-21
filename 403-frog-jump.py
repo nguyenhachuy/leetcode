@@ -1,6 +1,22 @@
 from typing import List
 from bisect import bisect_left
 class Solution:
+    def canCross(self, stones):
+        dp = {}
+        for stone in stones:
+            dp[stone] = set()
+        stone_set = set(stones)
+        dp[0].add(0)
+
+        for i,v in enumerate(stones):
+            for k in dp[v]:
+                for step in range(k-1,k+2):
+                    if step > 0 and v + step in dp:
+                        if v + step == stones[-1]:
+                            return True
+                        dp[v + step].add(step)
+
+        return False
     # Recursion
     def dp(self, index, prev_jump, stones):
         if index == len(stones) - 1:
