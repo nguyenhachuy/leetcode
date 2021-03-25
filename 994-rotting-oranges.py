@@ -2,9 +2,8 @@
 time for a possible orange to rot is minimum distance to a rotting orange at start of the game
 we want to find the max path of an orange to rotting
 
-1 scan to find rotting islands, 
-for each orange,get minimum rotting time which is delta x + delta y to the closest rotting orange. 
-
+1 scan to find rotting islands,
+for each orange,get minimum rotting time which is delta x + delta y to the closest rotting orange.
 """
 from collections import deque
 
@@ -13,21 +12,21 @@ from collections import deque
 
 class Solution:
     def orangesRotting(self, grid: List[List[int]]) -> int:
-        
+
         # number of rows
         rows = len(grid)
         if rows == 0:  # check if grid is empty
             return -1
-        
+
         # number of columns
         cols = len(grid[0])
-        
+
         # keep track of fresh oranges
         fresh_cnt = 0
-        
+
         # queue with rotten oranges (for BFS)
         rotten = deque()
-        
+
         # visit each cell in the grid
         for r in range(rows):
             for c in range(cols):
@@ -37,21 +36,21 @@ class Solution:
                 elif grid[r][c] == 1:
                     # update fresh oranges count
                     fresh_cnt += 1
-        
+
         # keep track of minutes passed.
         minutes_passed = 0
-        
+
         # If there are rotten oranges in the queue and there are still fresh oranges in the grid keep looping
         while rotten and fresh_cnt > 0:
 
             # update the number of minutes passed
             # it is safe to update the minutes by 1, since we visit oranges level by level in BFS traversal.
             minutes_passed += 1
-            
+
             # process rotten oranges on the current level
             for _ in range(len(rotten)):
                 x, y = rotten.popleft()
-                
+
                 # visit all the adjacent cells
                 for dx, dy in [(1,0), (-1,0), (0,1), (0,-1)]:
                     # calculate the coordinates of the adjacent cell
@@ -62,17 +61,17 @@ class Solution:
                     # ignore the cell if it is empty '0' or visited before '2'
                     if grid[xx][yy] == 0 or grid[xx][yy] == 2:
                         continue
-                        
+
                     # update the fresh oranges count
                     fresh_cnt -= 1
-                    
+
                     # mark the current fresh orange as rotten
                     grid[xx][yy] = 2
-                    
+
                     # add the current rotten to the queue
                     rotten.append((xx, yy))
 
-        
+
         # return the number of minutes taken to make all the fresh oranges to be rotten
         # return -1 if there are fresh oranges left in the grid (there were no adjacent rotten oranges to make them rotten)
         return minutes_passed if fresh_cnt == 0 else -1

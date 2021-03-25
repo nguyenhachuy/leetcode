@@ -15,5 +15,4 @@ class Solution(object):
 given 2 pairs of points, we can think of it as a diagonal of a rectangle, and 2 points must be  differnet
 then we form the other pair of points to complete the rectangle, check if it's in the set, then we
 can calculate the rectangle area
-
 """
